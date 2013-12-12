@@ -36,6 +36,17 @@ vows.describe('asana-api/workspaces').addBatch({
         assert.isNull(err);
         assert.isArray(tasks);
       }
+    },
+    "the workspaces.projects() method": {
+      topic: function (client) {
+        client.workspaces.projects(config.workspaces[0], {
+          opt_fields: 'name,notes,archive'
+        }, this.callback);
+      },
+      "should respond with valid projects": function (err, projects) {
+        assert.isNull(err);
+        assert.isArray(projects);
+      }
     }
   }
 }).export(module);
